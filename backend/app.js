@@ -1,11 +1,17 @@
-require("dotenv").config()
+// Import the dotenv module and call the config() method 
+const dotenv = require("dotenv").config();
 
 const express = require("express");
 const app = express();
 const port = process.env.PORT;
 
 const cors = require('cors')
-app.use(cors())
+// Set up the CORS options to allow requests from our front-end 
+const corsOptions = {
+  origin: process.env.FRONTEND_URL,
+  optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions))
 
 // db connection
 const dbConnection = require("./db/dbConfig");
