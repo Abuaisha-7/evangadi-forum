@@ -9,6 +9,51 @@ A full‑stack Q&A forum with a Node.js/Express + MySQL backend and a React (Vit
 ./frontend  # React (Vite) client
 ```
 
+## 📁 Project Structure
+
+```
+Evangadi-forum/
+  backend/
+    app.js
+    controller/
+      answerControler.js
+      installController.js
+      questionController.js
+      userController.js
+    db/
+      dbConfig.js
+    middleWare/
+      authmiddleWare.js
+    routes/
+      answerRoute.js
+      installRoute.js
+      questionRoute.js
+      userRoute.js
+    services/
+      installService.js
+      sql/
+        initial-queries.sql
+  frontend/
+    index.html
+    netlify.toml
+    src/
+      App.jsx
+      axiosConfig.jsx
+      main.jsx
+      Header/
+        Header.jsx
+      Footer/
+        Footer.jsx
+      Landing/
+        forms/
+          Login.jsx
+          Register.jsx
+      pages/
+        Home.jsx
+        AskQuestion.jsx
+        QuestionDetail.jsx
+```
+
 ## Tech stack
 
 - Backend: Node.js, Express, MySQL (mysql2), JWT auth, bcrypt, CORS, dotenv
@@ -19,6 +64,15 @@ A full‑stack Q&A forum with a Node.js/Express + MySQL backend and a React (Vit
 - Node.js 18+
 - MySQL 8+
 - npm (comes with Node)
+
+---
+
+## Clone the repo
+
+```bash
+git clone https://github.com/Abuaisha-7/evangadi-forum.git
+cd Evangadi-forum
+```
 
 ---
 
