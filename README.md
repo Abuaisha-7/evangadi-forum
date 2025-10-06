@@ -13,45 +13,30 @@ A full‑stack Q&A forum with a Node.js/Express + MySQL backend and a React (Vit
 
 ```
 Evangadi-forum/
-  backend/
-    app.js
-    controller/
-      answerControler.js
-      installController.js
-      questionController.js
-      userController.js
-    db/
-      dbConfig.js
-    middleWare/
-      authmiddleWare.js
-    routes/
-      answerRoute.js
-      installRoute.js
-      questionRoute.js
-      userRoute.js
-    services/
-      installService.js
-      sql/
-        initial-queries.sql
-  frontend/
-    index.html
-    netlify.toml
-    src/
-      App.jsx
-      axiosConfig.jsx
-      main.jsx
-      Header/
-        Header.jsx
-      Footer/
-        Footer.jsx
-      Landing/
-        forms/
-          Login.jsx
-          Register.jsx
-      pages/
-        Home.jsx
-        AskQuestion.jsx
-        QuestionDetail.jsx
+├── backend/                 # Node.js backend
+│   ├── controller/          # Route controllers
+│   ├── db/                  # Database configuration
+│   ├── middleWare/          # Authentication middleware
+│   ├── routes/              # API routes
+│   ├── services/            # Business logic
+│   │   └── sql/             # Database initialization scripts
+│   ├── app.js               # Main server file
+│   └── package.json         # Backend dependencies
+├── frontend/                # React frontend (Vite)
+│   ├── src/
+│   │   ├── Header/          # Header component
+│   │   ├── Footer/          # Footer component
+│   │   ├── Landing/         # Auth and landing forms
+│   │   │   └── forms/
+│   │   ├── pages/           # Page components
+│   │   ├── assets/          # Static assets
+│   │   ├── axiosConfig.jsx  # API service config
+│   │   ├── App.jsx          # App root
+│   │   └── main.jsx         # Vite entry
+│   ├── index.html           # HTML template
+│   ├── netlify.toml         # Netlify SPA redirects
+│   └── package.json         # Frontend dependencies
+└── README.md                # Project documentation
 ```
 
 ## Tech stack
