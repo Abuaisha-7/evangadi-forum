@@ -96,7 +96,7 @@ console.log(question)
 
       window.location.reload(false);
     } catch (error) {
-      //   alert(error?.response?.data?.msg);
+        alert(error?.response?.data?.msg);
       console.log(error.response.data);
     }
   };

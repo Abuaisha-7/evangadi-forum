@@ -5,17 +5,25 @@ const bcrypt = require("bcrypt");
 const { StatusCodes } = require("http-status-codes");
 
 async function giveAnswer(req, res) {
-  const  {question_id} = req.params;
+  const { question_id } = req.params;
   const { userId } = req.user;
   const { answer } = req.body;
 
   if (!answer) {
-    return res.status(StatusCodes.BAD_REQUEST).json({ msg: "Please provide your answer" });
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ msg: "Please provide your answer" });
   }
 
   try {
-   
-   
+    const MAX_LENGTH = 255;
+
+    if (answer.length > MAX_LENGTH) {
+      return res
+        .status(400)
+        .json({ msg: `Answer cannot exceed ${MAX_LENGTH} characters.` });
+    }
+
     const [singleQuestions] = await dbConnection.query(
       "SELECT question.*, registration.user_name from question JOIN registration ON question.user_id = registration.user_id WHERE question_id = ?",
       [question_id]
@@ -40,25 +48,24 @@ async function giveAnswer(req, res) {
 
 async function allAnswers(req, res) {
   // const {post_id} = req.body;
-  
-  const {post_id} = req.params;
+
+  const { post_id } = req.params;
 
   try {
-
     // const [answers] = await dbConnection.query(
     //   "SELECT answer.*, registration.user_name from answer JOIN registration ON answer.user_id = registration.user_id ORDER BY answer.answer_id DESC"
-    
+
     //   // "SELECT answer.*, registration.user_name from answer JOIN registration ON answer.user_id = registration.user_id WHERE question_id = ? ORDER BY answer.answer_id DESC",[question_id]
     // );
 
     const [answers] = await dbConnection.query(
-
-      "SELECT answer.*, registration.user_name from answer JOIN registration ON answer.user_id = registration.user_id WHERE post_id = ? ORDER BY answer.answer_id DESC",[post_id]
+      "SELECT answer.*, registration.user_name from answer JOIN registration ON answer.user_id = registration.user_id WHERE post_id = ? ORDER BY answer.answer_id DESC",
+      [post_id]
 
       // `SELECT *  FROM answer WHERE answer.post_id = ?`,[post_id]
     );
 
-    console.log(answers)
+    console.log(answers);
 
     return res.status(StatusCodes.OK).json({ answers });
   } catch (error) {
