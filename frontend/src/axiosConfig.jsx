@@ -4,7 +4,7 @@ const api_url = import.meta.env.VITE_API_URL;
 const axiosBase = axios.create({
   
     baseURL:api_url
-    // baseURL: 'https://evangadi-forum-backend-deploy.onrender.com/api'
+
 })
 
 export default axiosBase
