@@ -169,6 +169,34 @@ npm run preview
 - For backend hosting (e.g., Render, Railway), expose the Express app and set the env vars.
 - Ensure the frontend `VITE_API_URL` points to your deployed API base (including `/api`).
 
+### Database deployment (Clever Cloud MySQL)
+
+If you host MySQL on `console.clever-cloud.com`:
+
+1) Create a MySQL add-on in Clever Cloud.
+2) Open the add-on and copy the credentials from the environment variables (names may look like):
+
+   - `MYSQL_ADDON_HOST`
+   - `MYSQL_ADDON_USER`
+   - `MYSQL_ADDON_PASSWORD`
+   - `MYSQL_ADDON_DB`
+   - `MYSQL_ADDON_PORT` (usually 3306)
+
+3) Map them to your backend `.env`:
+
+```bash
+# backend/.env
+DB_HOST=<MYSQL_ADDON_HOST>
+USER=<MYSQL_ADDON_USER>
+PASSWORD=<MYSQL_ADDON_PASSWORD>
+DATABASE=<MYSQL_ADDON_DB>
+```
+
+Notes:
+- The code uses `mysql2` pool with default port 3306; specifying a port is typically unnecessary.
+- Some managed instances may require SSL. If your provider mandates it, configure SSL in `backend/db/dbConfig.js` (e.g., `ssl: { rejectUnauthorized: true }`) and provide the CA if required.
+- Apply your schema to the remote database using `backend/services/sql/initial-queries.sql` before running the app.
+
 ## Scripts reference
 
 - Backend `package.json` currently has no start script; use `node app.js` (or add scripts as desired).
